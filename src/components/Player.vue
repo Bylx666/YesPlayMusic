@@ -156,11 +156,17 @@
               ></vue-slider>
             </div>
           </div>
+          <button-icon
+            class="download-button"
+            title="下载"
+            style="margin-left: 12px"
+            @click.native="player.downloadCurrentTrack"
+            ><svg-icon icon-class="download"
+          /></button-icon>
 
           <button-icon
             class="lyrics-button"
             title="歌词"
-            style="margin-left: 12px"
             @click.native="toggleLyrics"
             ><svg-icon icon-class="arrow-up"
           /></button-icon>

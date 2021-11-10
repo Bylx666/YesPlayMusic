@@ -9,6 +9,7 @@ import { personalFM, fmTrash } from '@/api/others';
 import store from '@/store';
 import { isAccountLoggedIn } from '@/utils/auth';
 import { trackUpdateNowPlaying, trackScrobble } from '@/api/lastfm';
+// import { promiseCallback } from 'express-fileupload/lib/utilities';
 
 const electron =
   process.env.IS_ELECTRON === true ? window.require('electron') : null;
@@ -523,6 +524,15 @@ export default class {
       this._volumeBeforeMuted = this.volume;
       this.volume = 0;
     }
+  }
+  downloadCurrentTrack() {
+    return new Promise(resolve => {
+      resolve(
+        `https://music.163.com/song/media/outer/url?id=${this._currentTrack.id}`
+      );
+    }).then(result => {
+      window.open(result);
+    });
   }
   setOutputDevice() {
     if (this._howler?._sounds.length <= 0 || !this._howler?._sounds[0]._node) {
